@@ -17,7 +17,6 @@
 package com.example.android.testing.espresso.BasicSample.test;
 
 import android.support.test.espresso.Espresso;
-import android.util.Log;
 import android.widget.EditText;
 import com.example.android.testing.espresso.BasicSample.MainActivity;
 
@@ -77,7 +76,6 @@ public class ChangeTextBehaviorTest {
         onView(withId(R.id.editTextUserInput))
                 .perform(typeText(STRING_TO_BE_TYPED), closeSoftKeyboard());
         onView(withId(R.id.changeTextBt)).perform(click());
-        Log.i("changeTextBt", new Integer(R.id.changeTextBt).toString());
         // Check that the text was changed.
         onView(withId(R.id.textToBeChanged)).check(matches(withText(STRING_TO_BE_TYPED)));
     }
