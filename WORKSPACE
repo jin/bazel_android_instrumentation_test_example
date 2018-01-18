@@ -1,26 +1,24 @@
 android_sdk_repository(name = "androidsdk")
+
 android_ndk_repository(name = "androidndk")
 
-# git_repository(
-#     name = "android_test_support",
-#     commit = "525d675e2d63dee98bfe6ee09ad5bfc8e8a8fef1",
-#     remote = "https://github.com/google/android-testing-support-library.git",
-# )
-
 local_repository(
-      name = "android_test_support",
-      path = "/usr/local/google/home/jingwen/code/atsl",
+    name = "android_test_support",
+    path = "/tmp/atslgit",
 )
 
-load("@android_test_support//tools/android/emulator:unified_launcher.bzl", "load_workspace")
-load_workspace()
+load("@android_test_support//:repo.bzl", "android_test_repositories")
+
+android_test_repositories()
 
 git_repository(
-    name = 'gmaven_rules',
-    remote = 'https://github.com/aj-michael/gmaven_rules',
-    commit = 'ccf6e13ba9357e6845179fe90e78b0fa24bd9f2b',
+    name = "gmaven_rules",
+    commit = "5e89b7cdc94d002c13576fad3b28b0ae30296e55",
+    remote = "https://github.com/aj-michael/gmaven_rules",
 )
-load('@gmaven_rules//:gmaven.bzl', 'gmaven_rules')
+
+load("@gmaven_rules//:gmaven.bzl", "gmaven_rules")
+
 gmaven_rules()
 
 maven_jar(
